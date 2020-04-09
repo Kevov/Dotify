@@ -15,7 +15,7 @@
     </style>
 
     <style name="BodyText">
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:textColor">#01122e</item>
     </style>
 

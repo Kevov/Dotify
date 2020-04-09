@@ -7,9 +7,10 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private var viewCount = 0
+    private var viewCount: Int = Random.nextInt(1, 100000)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +52,10 @@ class MainActivity : AppCompatActivity() {
         if (btnChangeUser.text == "Change User") {
             btnChangeUser.text = "Apply"
             changeUsernameEditVisibility(View.INVISIBLE, View.VISIBLE)
+        } else if (etEditUsername.text.toString() == "") {
+            Toast.makeText(this, "Username cannot be empty", Toast.LENGTH_SHORT).show()
         } else {
-            tvUsername.text = etEditUsername.text
+            tvUsername.text = etEditUsername.text.toString()
             btnChangeUser.text = "Change User"
             changeUsernameEditVisibility(View.VISIBLE, View.INVISIBLE)
         }
