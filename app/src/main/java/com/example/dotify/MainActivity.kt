@@ -50,14 +50,21 @@ class MainActivity : AppCompatActivity() {
         Log.i("dotify", "change user")
         if (btnChangeUser.text == "Change User") {
             btnChangeUser.text = "Apply"
+            changeUsernameEditVisibility(View.INVISIBLE, View.VISIBLE)
         } else {
             tvUsername.text = etEditUsername.text
             btnChangeUser.text = "Change User"
+            changeUsernameEditVisibility(View.VISIBLE, View.INVISIBLE)
         }
     }
 
     //Helper functions
     private fun populateViewCount() {
         tvViewCount.text = "$viewCount plays"
+    }
+
+    private fun changeUsernameEditVisibility(username: Int, editName: Int) {
+        tvUsername.visibility = username
+        etEditUsername.visibility = editName
     }
 }
