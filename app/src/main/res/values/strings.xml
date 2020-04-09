@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Dotify</string>
+    <string name="default_user_name">khoal_cr</string>
+    <string name="username_hint">new username</string>
 </resources>

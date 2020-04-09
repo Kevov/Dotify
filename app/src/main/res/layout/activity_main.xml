@@ -11,22 +11,24 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="khoal_cr"
+        android:text="@string/default_user_name"
         app:layout_constraintBottom_toBottomOf="@+id/btnChangeUser"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnChangeUser" />
+        app:layout_constraintTop_toTopOf="@+id/btnChangeUser"
+        style="@style/BodyText"/>
 
     <EditText
         android:id="@+id/etEditUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="new username"
+        android:hint="@string/username_hint"
         android:inputType="textPersonName"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/tvUsername"
         app:layout_constraintLeft_toLeftOf="@+id/tvUsername"
-        app:layout_constraintTop_toTopOf="@+id/tvUsername" />
+        app:layout_constraintTop_toTopOf="@+id/tvUsername"
+        style="@style/BodyText"/>
 
     <Button
         android:id="@+id/btnChangeUser"
@@ -40,9 +42,11 @@
         android:id="@+id/ivAlbumCover"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerCrop"
+        android:contentDescription="picture of a group of men in suits"
         app:layout_constraintTop_toBottomOf="@+id/btnChangeUser"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/album_cover"
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/tvArtist"
@@ -51,7 +55,8 @@
         android:text="Vicetone and Tony Iggy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        style="@style/BodyText"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -60,7 +65,8 @@
         android:text="Astronomia"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivAlbumCover" />
+        app:layout_constraintTop_toBottomOf="@+id/ivAlbumCover"
+        style="@style/Header"/>
 
     <TextView
         android:id="@+id/tvViewCount"
@@ -69,7 +75,8 @@
         android:text="View count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
+        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        style="@style/BodyText"/>
     <LinearLayout
         app:layout_constraintTop_toBottomOf="@+id/tvViewCount"
         android:orientation="horizontal"
