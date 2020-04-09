@@ -48,7 +48,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun fnChangeUser(view: View) {
         Log.i("dotify", "change user")
-
+        if (btnChangeUser.text == "Change User") {
+            btnChangeUser.text = "Apply"
+        } else {
+            tvUsername.text = etEditUsername.text
+            btnChangeUser.text = "Change User"
+        }
     }
 
     //Helper functions
