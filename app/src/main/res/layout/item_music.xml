@@ -4,13 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp">
 
     <ImageView
         android:id="@+id/ivAlbumCover"
         android:layout_width="60dp"
         android:layout_height="60dp"
-
+        android:paddingRight="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/beforeyougo"
         />
 
@@ -20,7 +24,6 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@id/tvArtist"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,8 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/tvSongName"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="200dp"
