@@ -2,16 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="16dp">
+    android:layout_marginTop="16dp"
+    android:foreground="?selectableItemBackground">
 
     <ImageView
         android:id="@+id/ivAlbumCover"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:paddingRight="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/imgLoadText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,25 +20,29 @@
 
     <TextView
         android:id="@+id/tvSongName"
+        style="@style/BodyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/loadingText"
         app:layout_constraintBottom_toTopOf="@id/tvArtist"
         app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvArtist"
+        style="@style/BodyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:maxLines="1"
+        android:layout_marginStart="12dp"
         android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@id/tvSongName"
-        app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
+        android:maxLines="1"
+        android:text="@string/loadingText"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="200dp"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@id/tvSongName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

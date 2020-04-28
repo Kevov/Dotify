@@ -93,7 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:src="@drawable/prev_song_foreground" />
+            android:src="@drawable/prev_song_foreground"
+            android:foreground="?selectableItemBackground"/>
 
         <ImageButton
             android:id="@+id/ibPlay"
@@ -101,7 +102,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:src="@drawable/play_song_foreground" />
+            android:src="@drawable/play_song_foreground"
+            android:foreground="?selectableItemBackground"/>
 
         <ImageButton
             android:id="@+id/ibNext"
@@ -109,7 +111,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:src="@drawable/next_song_foreground" />
+            android:src="@drawable/next_song_foreground"
+            android:foreground="?selectableItemBackground"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

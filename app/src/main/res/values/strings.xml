@@ -2,4 +2,8 @@
     <string name="app_name">Dotify</string>
     <string name="default_user_name">khoal_cr</string>
     <string name="username_hint">new username</string>
+    <string name="actionBarText">%s - %s</string>
+    <string name="loadingText">Loading</string>
+    <string name="shuffleText">Shuffle</string>
+    <string name="imgLoadText">Loading image</string>
 </resources>

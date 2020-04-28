@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingHorizontal="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/constLayoutBottomBar"
+        app:layout_constraintBottom_toTopOf="@+id/clActionBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constLayoutBottomBar"
+        android:id="@+id/clActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
@@ -39,27 +39,25 @@
         app:layout_constraintTop_toBottomOf="@id/constLayoutMainList">
 
         <TextView
-            android:id="@+id/tvTitleAndArtist"
+            android:id="@+id/tvActionBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/tvShuffle"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1234uhuhudwqdwqdwqdwqdwqdwqdwwqwhhhhhhh" />
+            app:layout_constraintRight_toLeftOf="@id/btnShuffle"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/tvShuffle"
+            android:id="@+id/btnShuffle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shuffle"
-            android:layout_marginLeft="10dp"
+            android:text="@string/shuffleText"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/tvTitleAndArtist"
+            app:layout_constraintLeft_toRightOf="@id/tvActionBar"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
