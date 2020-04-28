@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
 class SongListAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
-    var onSongClickListener: ((songName: String, artist: String) -> Unit)? = null
+    var onSongClickListener: ((song: Song) -> Unit)? = null
 
      inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val tvSongName by lazy { itemView.findViewById<TextView>(R.id.tvSongName) }
@@ -22,7 +22,7 @@ class SongListAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter
             ivAlbumCover.contentDescription = "Album cover for the song ${song.title}"
 
             itemView.setOnClickListener{
-                onSongClickListener?.invoke(song.title, song.artist)
+                onSongClickListener?.invoke(song)
             }
         }
 

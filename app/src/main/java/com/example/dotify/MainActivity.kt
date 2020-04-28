@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,10 +13,18 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
     private var viewCount: Int = Random.nextInt(1, 100000)
 
+    companion object {
+        const val NAME_KEY = "NAME_KEY"
+        const val ARTIST_KEY = "ARTIST_KEY"
+        const val COVER_KEY = "COVER_KEY"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         populateViewCount()
+        populateSong()
+
 
         ibPrev.setOnClickListener {
             v: View -> fnPrevSong(v)
@@ -29,6 +38,16 @@ class MainActivity : AppCompatActivity() {
         btnChangeUser.setOnClickListener {
             v: View -> fnChangeUser(v)
         }
+    }
+
+    private fun populateSong() {
+        val ivCover = findViewById<ImageView>(R.id.ivAlbumCover)
+        val tvSongName = findViewById<TextView>(R.id.tvTitle)
+        val tvArtist = findViewById<TextView>(R.id.tvArtist)
+
+        ivCover.setImageResource(intent.getIntExtra(COVER_KEY, -1))
+        tvSongName.text = intent.getStringExtra(NAME_KEY)
+        tvArtist.text = intent.getStringExtra(ARTIST_KEY)
     }
 
     private fun fnPlaySong(view: View) {
@@ -49,15 +68,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun fnChangeUser(view: View) {
         Log.i("dotify", "change user")
-        if (btnChangeUser.text == "Change User") {
-            btnChangeUser.text = "Apply"
-            changeUsernameEditVisibility(View.INVISIBLE, View.VISIBLE)
-        } else if (etEditUsername.text.toString() == "") {
-            Toast.makeText(this, "Username cannot be empty", Toast.LENGTH_SHORT).show()
-        } else {
-            tvUsername.text = etEditUsername.text.toString()
-            btnChangeUser.text = "Change User"
-            changeUsernameEditVisibility(View.VISIBLE, View.INVISIBLE)
+        when {
+            btnChangeUser.text == "Change User" -> {
+                btnChangeUser.text = "Apply"
+                changeUsernameEditVisibility(View.INVISIBLE, View.VISIBLE)
+            }
+            etEditUsername.text.toString() == "" -> {
+                Toast.makeText(this, "Username cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                tvUsername.text = etEditUsername.text.toString()
+                btnChangeUser.text = "Change User"
+                changeUsernameEditVisibility(View.VISIBLE, View.INVISIBLE)
+            }
         }
     }
 
