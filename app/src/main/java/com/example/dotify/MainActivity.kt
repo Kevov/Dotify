@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        /*setContentView(R.layout.activity_main)
         populateViewCount()
         populateSong()
 
@@ -37,10 +37,34 @@ class MainActivity : AppCompatActivity() {
         }
         btnChangeUser.setOnClickListener {
             v: View -> fnChangeUser(v)
-        }
+        }*/
     }
 
-    private fun populateSong() {
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    /*private fun populateSong() {
         val ivCover = findViewById<ImageView>(R.id.ivAlbumCover)
         val tvSongName = findViewById<TextView>(R.id.tvTitle)
         val tvArtist = findViewById<TextView>(R.id.tvArtist)
@@ -92,5 +116,5 @@ class MainActivity : AppCompatActivity() {
     private fun changeUsernameEditVisibility(username: Int, editName: Int) {
         tvUsername.visibility = username
         etEditUsername.visibility = editName
-    }
+    }*/
 }

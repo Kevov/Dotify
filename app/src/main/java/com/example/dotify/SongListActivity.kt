@@ -24,6 +24,7 @@ class SongListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_list)
 
+        title = "All Songs"
         btnShuffle = findViewById<Button>(R.id.btnShuffle)
         tvActionBar = findViewById<TextView>(R.id.tvActionBar)
 
