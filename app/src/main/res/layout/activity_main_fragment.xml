@@ -4,30 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SongListActivity">
+    tools:context=".activity.MainFragmentActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constLayoutMainList"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/fragMusicList"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/clMiniPlayer"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside">
+        android:background="@color/cornflowerBlue">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMusicList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clActionBar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMiniPlayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
@@ -35,15 +27,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constLayoutMainList">
+        app:layout_constraintTop_toBottomOf="@id/fragMusicList">
 
         <TextView
             android:id="@+id/tvActionBar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
             android:ellipsize="end"
             android:maxLines="1"
             android:visibility="invisible"
+            android:background="?selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -61,7 +55,5 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

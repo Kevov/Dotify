@@ -6,4 +6,5 @@
     <string name="loadingText">Loading</string>
     <string name="shuffleText">Shuffle</string>
     <string name="imgLoadText">Loading image</string>
+    <string name="change_user">Change User</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.dotify
+package com.example.dotify.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,10 +7,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.dotify.R
+import kotlinx.android.synthetic.main.activity_now_playing.*
 import kotlin.random.Random
 
-class MainActivity : AppCompatActivity() {
+class NowPlayingActivity : AppCompatActivity() {
     private var viewCount: Int = Random.nextInt(1, 100000)
 
     companion object {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_now_playing)
         populateViewCount()
         populateSong()
 
@@ -37,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         }
         btnChangeUser.setOnClickListener {
             v: View -> fnChangeUser(v)
-        }*/
+        }
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
     }
 
@@ -62,9 +63,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-    }
+    }*/
 
-    /*private fun populateSong() {
+    private fun populateSong() {
         val ivCover = findViewById<ImageView>(R.id.ivAlbumCover)
         val tvSongName = findViewById<TextView>(R.id.tvTitle)
         val tvArtist = findViewById<TextView>(R.id.tvArtist)
@@ -116,5 +117,5 @@ class MainActivity : AppCompatActivity() {
     private fun changeUsernameEditVisibility(username: Int, editName: Int) {
         tvUsername.visibility = username
         etEditUsername.visibility = editName
-    }*/
+    }
 }

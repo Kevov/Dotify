@@ -1,4 +1,4 @@
-package com.example.dotify
+package com.example.dotify.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,16 +8,19 @@ import android.widget.Button
 import android.widget.TextView
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
-import com.example.dotify.MainActivity.Companion.ARTIST_KEY
-import com.example.dotify.MainActivity.Companion.COVER_KEY
-import com.example.dotify.MainActivity.Companion.NAME_KEY
+import com.example.dotify.activity.NowPlayingActivity.Companion.ARTIST_KEY
+import com.example.dotify.activity.NowPlayingActivity.Companion.COVER_KEY
+import com.example.dotify.activity.NowPlayingActivity.Companion.NAME_KEY
+import com.example.dotify.R
+import com.example.dotify.model.SongListAdapter
 import kotlinx.android.synthetic.main.activity_song_list.*
 
 class SongListActivity : AppCompatActivity() {
     private lateinit var  btnShuffle: Button
     private lateinit var tvActionBar: TextView
     private val listOfSong: List<Song> = SongDataProvider.getAllSongs()
-    private val songListAdapter = SongListAdapter(listOfSong)
+    private val songListAdapter =
+        SongListAdapter(listOfSong)
     private lateinit var storedSong: Song
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +28,8 @@ class SongListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_song_list)
 
         title = "All Songs"
-        btnShuffle = findViewById<Button>(R.id.btnShuffle)
-        tvActionBar = findViewById<TextView>(R.id.tvActionBar)
+        /*btnShuffle = findViewById<Button>(R.id.btnShuffle)
+        tvActionBar = findViewById<TextView>(R.id.tvActionBar)*/
 
         rvMusicList.adapter = songListAdapter
 
@@ -39,7 +42,7 @@ class SongListActivity : AppCompatActivity() {
         }
 
         tvActionBar.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, NowPlayingActivity::class.java)
             intent.putExtra(NAME_KEY, storedSong.title)
             intent.putExtra(ARTIST_KEY, storedSong.artist)
             intent.putExtra(COVER_KEY, storedSong.largeImageID)
