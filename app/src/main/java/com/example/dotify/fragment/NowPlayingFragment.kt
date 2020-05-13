@@ -16,7 +16,8 @@ class NowPlayingFragment: Fragment() {
     private var viewCount: Int = Random.nextInt(1, 100000)
 
     companion object {
-        const val NOW_PLAYING_KEY = "now_playing_key"
+        const val NOW_PLAYING_KEY: String = "now_playing_key"
+        val TAG: String = NowPlayingFragment::class.java.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

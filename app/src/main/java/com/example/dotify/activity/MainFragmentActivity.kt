@@ -2,6 +2,7 @@ package com.example.dotify.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
@@ -37,6 +38,15 @@ class MainFragmentActivity : AppCompatActivity(), OnSongClickListener {
             .add(R.id.fragMusicList, songListFragment)
             .commit()
 
+        supportFragmentManager.addOnBackStackChangedListener {
+            val hasBackStack = supportFragmentManager.backStackEntryCount > 0
+            if (hasBackStack) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+        }
+
         btnShuffle.setOnClickListener {
             tvActionBar.visibility = View.INVISIBLE
             songListFragment.shuffleMusicList()
@@ -45,6 +55,12 @@ class MainFragmentActivity : AppCompatActivity(), OnSongClickListener {
         tvActionBar.setOnClickListener {
             showNowPlayingFragment()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        clMiniPlayer.visibility = View.VISIBLE
+        supportFragmentManager.popBackStack()
+        return super.onSupportNavigateUp()
     }
 
     private fun showNowPlayingFragment() {
@@ -58,11 +74,13 @@ class MainFragmentActivity : AppCompatActivity(), OnSongClickListener {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragMusicList, nowPlayingFragment)
+            .addToBackStack(NowPlayingFragment.TAG)
             .commit()
     }
 
     override fun onSongClicked(song: Song) {
         selectedSong = song
+        Log.i("SONG", selectedSong.title)
         tvActionBar.visibility = View.VISIBLE
         tvActionBar.text = "%s - %s".format(song.title, song.artist)
     }

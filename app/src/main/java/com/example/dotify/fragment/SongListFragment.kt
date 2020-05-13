@@ -19,6 +19,7 @@ class SongListFragment: Fragment() {
 
     companion object {
         const val SONG_LIST_KEY: String = "song_list_key"
+        val TAG = SongListFragment::class.java.simpleName
 
         fun getInstance(listOfSongs: List<Song>): SongListFragment {
             return SongListFragment().apply {
