@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:clickable="true"
-    android:focusable="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
             style="@style/Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Astronomia"
+            app:layout_constraintBottom_toTopOf="@id/tvArtist"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvArtist"/>
+            tools:text="Astronomia" />
 
         <TextView
             android:id="@+id/tvArtist"
@@ -32,11 +33,11 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            tools:text="Vicetone and Tony Iggy"
+            app:layout_constraintBottom_toTopOf="@id/tvViewCount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            app:layout_constraintBottom_toTopOf="@id/tvViewCount"/>
+            tools:text="Vicetone and Tony Iggy" />
 
 
         <TextView
@@ -44,11 +45,11 @@
             style="@style/BodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="View count"
+            app:layout_constraintBottom_toTopOf="@id/llPlayerButtons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvArtist"
-            app:layout_constraintBottom_toTopOf="@id/llPlayerButtons"/>
+            tools:text="View count" />
 
         <LinearLayout
             android:id="@+id/llPlayerButtons"

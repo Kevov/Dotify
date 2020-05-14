@@ -15,31 +15,34 @@ import com.example.dotify.model.OnSongClickListener
 import kotlinx.android.synthetic.main.activity_main_fragment.*
 
 class MainFragmentActivity : AppCompatActivity(), OnSongClickListener {
-    private lateinit var songListFragment: SongListFragment
-    private lateinit var nowPlayingFragment: NowPlayingFragment
+    private var listOfSongs = SongDataProvider.getAllSongs()
     private lateinit var selectedSong: Song
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_fragment)
 
-        val listOfSongs = ArrayList<Song>(SongDataProvider.getAllSongs())
+        val hasSongListFragment: Boolean = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) != null
+        val hasNowPlayingFragment: Boolean = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) != null
 
-        songListFragment = SongListFragment()
-        nowPlayingFragment = NowPlayingFragment()
 
-        val songListArgument: Bundle = Bundle().apply {
-            putParcelableArrayList(SONG_LIST_KEY, listOfSongs)
+        if (!hasSongListFragment && !hasNowPlayingFragment) {
+            val songListFragment = SongListFragment.getInstance(listOfSongs)
+
+            Log.i("DETAIL", "false")
+
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragMusicList, songListFragment, SongListFragment.TAG)
+                .commit()
+        } else if (hasNowPlayingFragment) {
+            Log.i("songlist", "hello")
+            clMiniPlayer.visibility = View.GONE
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
-        songListFragment.arguments = songListArgument
-
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragMusicList, songListFragment)
-            .commit()
 
         supportFragmentManager.addOnBackStackChangedListener {
-            val hasBackStack = supportFragmentManager.backStackEntryCount > 0
+            val hasBackStack = (supportFragmentManager.backStackEntryCount > 0)
             if (hasBackStack) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
             } else {
@@ -49,6 +52,7 @@ class MainFragmentActivity : AppCompatActivity(), OnSongClickListener {
 
         btnShuffle.setOnClickListener {
             tvActionBar.visibility = View.INVISIBLE
+            val songListFragment = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as SongListFragment
             songListFragment.shuffleMusicList()
         }
 
@@ -65,15 +69,11 @@ class MainFragmentActivity : AppCompatActivity(), OnSongClickListener {
 
     private fun showNowPlayingFragment() {
         clMiniPlayer.visibility = View.GONE
-
-        val songDetailArgument = Bundle().apply {
-            putParcelable(NOW_PLAYING_KEY, selectedSong)
-        }
-        nowPlayingFragment.arguments = songDetailArgument
+        val nowPlayingFragment = NowPlayingFragment.getInstance(selectedSong)
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragMusicList, nowPlayingFragment)
+            .add(R.id.fragMusicList, nowPlayingFragment, NowPlayingFragment.TAG)
             .addToBackStack(NowPlayingFragment.TAG)
             .commit()
     }

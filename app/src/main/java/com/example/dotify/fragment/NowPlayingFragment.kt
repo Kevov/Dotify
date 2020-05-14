@@ -13,15 +13,25 @@ import kotlin.random.Random
 
 class NowPlayingFragment: Fragment() {
     private lateinit var selectedSong: Song
-    private var viewCount: Int = Random.nextInt(1, 100000)
+    private var viewCount: Int = 0
 
     companion object {
         const val NOW_PLAYING_KEY: String = "now_playing_key"
         val TAG: String = NowPlayingFragment::class.java.simpleName
+
+        fun getInstance(song: Song): NowPlayingFragment {
+            return NowPlayingFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(NOW_PLAYING_KEY, song)
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewCount = Random.nextInt(1, 100000)
 
         arguments?.let { args ->
             with (args) {
