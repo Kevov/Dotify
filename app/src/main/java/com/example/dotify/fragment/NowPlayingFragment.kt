@@ -14,9 +14,12 @@ import kotlin.random.Random
 class NowPlayingFragment: Fragment() {
     private lateinit var selectedSong: Song
     private var viewCount: Int = 0
+    private var username: String = "lmao"
 
     companion object {
         const val NOW_PLAYING_KEY: String = "now_playing_key"
+        const val USERNAME_KEY = "username_key"
+        const val VIEW_COUNT_KEY = "view_count_key"
         val TAG: String = NowPlayingFragment::class.java.simpleName
 
         fun getInstance(song: Song): NowPlayingFragment {
@@ -31,7 +34,14 @@ class NowPlayingFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewCount = Random.nextInt(1, 100000)
+        if (savedInstanceState != null) {
+            viewCount = savedInstanceState.getInt(VIEW_COUNT_KEY)
+            savedInstanceState.getString(USERNAME_KEY)?.let { name ->
+                username = name
+            }
+        } else {
+            viewCount = Random.nextInt(1, 100000)
+        }
 
         arguments?.let { args ->
             with (args) {
@@ -53,6 +63,7 @@ class NowPlayingFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        populateUsername()
         populateViewCount()
         populateSong()
 
@@ -69,6 +80,14 @@ class NowPlayingFragment: Fragment() {
         btnChangeUser.setOnClickListener {
                 v: View -> fnChangeUser(v)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState?.run {
+            putInt(VIEW_COUNT_KEY, viewCount)
+            putString(USERNAME_KEY, username)
+        }
+        super.onSaveInstanceState(outState)
     }
 
     private fun populateSong() {
@@ -100,7 +119,8 @@ class NowPlayingFragment: Fragment() {
                 toastNotification("Username cannot be empty")
             }
             else -> {
-                tvUsername.text = etEditUsername.text.toString()
+                username = etEditUsername.text.toString()
+                populateUsername()
                 btnChangeUser.text = "Change User"
                 changeUsernameEditVisibility(View.VISIBLE, View.INVISIBLE)
             }
@@ -110,6 +130,10 @@ class NowPlayingFragment: Fragment() {
     //Helper functions
     private fun populateViewCount() {
         tvViewCount.text = "$viewCount plays"
+    }
+
+    private fun populateUsername() {
+        tvUsername.text = username
     }
 
     private fun toastNotification(text: String) {

@@ -18,13 +18,14 @@ class SongListFragment: Fragment() {
     private lateinit var onSongClickListener: OnSongClickListener
 
     companion object {
-        const val SONG_LIST_KEY: String = "song_list_key"
+        const val SONG_LIST_FRAGMENT_KEY: String = "song_list_key"
+        const val LIST_ORDER_KEY = "list_order_key"
         val TAG = SongListFragment::class.java.simpleName
 
         fun getInstance(listOfSongs: List<Song>): SongListFragment {
             return SongListFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(SONG_LIST_KEY, ArrayList(listOfSongs))
+                    putParcelableArrayList(SONG_LIST_FRAGMENT_KEY, ArrayList(listOfSongs))
                 }
             }
         }
@@ -40,10 +41,17 @@ class SongListFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { args ->
-            with (args) {
-                getParcelableArrayList<Song>(SONG_LIST_KEY)?.let { list ->
-                    listOfSongs = list.toMutableList()
+
+        if (savedInstanceState != null) {
+            savedInstanceState.getParcelableArrayList<Song>(LIST_ORDER_KEY)?.let { list ->
+                listOfSongs = list.toMutableList()
+            }
+        } else {
+            arguments?.let { args ->
+                with (args) {
+                    getParcelableArrayList<Song>(SONG_LIST_FRAGMENT_KEY)?.let { list ->
+                        listOfSongs = list.toMutableList()
+                    }
                 }
             }
         }
@@ -65,22 +73,15 @@ class SongListFragment: Fragment() {
         songListAdapter.onSongClickListener = {song ->
             onSongClickListener.onSongClicked(song)
         }
-
-        /*btnShuffle.setOnClickListener{*/
-        /*    shuffleMusicList()*/
-        /*}*/
     }
 
-    /*private fun populateActionBarAndStoreSong(song: Song) {
-        val songName = song.title
-        val artist = song.artist
-        storedSong = song
-        tvActionBar.visibility = View.VISIBLE
-        tvActionBar.text = getString(R.string.actionBarText).format(songName, artist)
-    }*/
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelableArrayList(LIST_ORDER_KEY, ArrayList(listOfSongs))
+        super.onSaveInstanceState(outState)
+    }
 
     fun shuffleMusicList() {
-        val shuffledList = listOfSongs.apply { shuffle() }
-        songListAdapter.change(shuffledList)
+        listOfSongs = listOfSongs.apply { shuffle() }
+        songListAdapter.change(listOfSongs)
     }
 }

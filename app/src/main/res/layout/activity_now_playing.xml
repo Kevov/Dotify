@@ -52,6 +52,18 @@
         tools:srcCompat="@drawable/album_cover" />
 
     <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Astronomia"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivAlbumCover" />
+
+    <TextView
         android:id="@+id/tvArtist"
         style="@style/BodyText"
         android:layout_width="wrap_content"
@@ -63,15 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Astronomia"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivAlbumCover" />
 
     <TextView
         android:id="@+id/tvViewCount"
